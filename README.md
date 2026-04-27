@@ -58,7 +58,7 @@ Semua source ada di:
 - Flutter SDK (sesuai `environment sdk: ^3.11.0`)
 - Android Studio / VSCode + emulator atau device
 
-### Jalankan (tanpa git clone)
+### Jalankan (tanpa git clone).
 
 Jika kamu sudah punya folder project ini di komputer:
 
