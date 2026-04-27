@@ -73,7 +73,7 @@ flutter run
 Kalau project ini ada di repository Git, contoh cara clone dan jalankan:
 
 ```bash
-git clone <URL_REPO_KAMU> Flutter_Mobile_Modul
+git clone <https://github.com/NauvalFaiz/Apps_Transaksi_toko> Flutter_Mobile_Modul
 cd Flutter_Mobile_Modul
 flutter pub get
 flutter run
