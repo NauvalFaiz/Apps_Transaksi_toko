@@ -1,17 +1,92 @@
-# flutter_mobile_modul
+# Tumbas App (Flutter Mobile Modul)
 
-A new Flutter project.
+Aplikasi mobile Flutter untuk **toko sederhana** dengan role **user** dan **admin**. Project ini menggunakan **Provider** untuk state (user & cart), **HTTP** untuk komunikasi API, dan **BLoC** untuk halaman riwayat transaksi.
 
-## Getting Started
+## Core aplikasi
 
-This project is a starting point for a Flutter application.
+- **Auth**
+  - Login & Register
+  - Session/token disimpan di `shared_preferences`
+- **Role**
+  - **User**: lihat produk, tambah ke keranjang, pesan, lihat riwayat, profil
+  - **Admin**: dashboard admin, manajemen produk, profil
+- **Cart & Transaksi**
+  - State keranjang memakai `CartProvider`
+  - Submit transaksi memakai `ServiceUser.buatTransaksi()` dengan payload:
+    - `{'pesan': [{'barang_id': <id>, 'qty': <qty>}, ...]}`
 
-A few resources to get you started if this is your first Flutter project:
+## Tampilan/fitur UI utama
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+- **Dashboard (User)**
+  - Menampilkan **nama user**
+  - Sapaan otomatis berdasarkan waktu: **Selamat Pagi/Siang/Sore/Malam** (pakai `DateTime.now()`)
+- **Product List**
+  - Tombol tambah ke cart per item
+  - Ikon cart di `AppBar` + badge jumlah item
+- **Product Detail**
+  - Pilih quantity, tambah ke cart, beli sekarang
+  - Ikon cart di `AppBar` + badge jumlah item
+- **Cart**
+  - List item + tombol + / - / hapus
+  - Menampilkan **gambar produk** (dari `item.image`)
+  - Tombol:
+    - **Pesan**: submit ke API, jika sukses cart otomatis kosong
+    - **Batal**: kosongkan cart
+- **History (Riwayat Transaksi)**
+  - Mengambil data riwayat transaksi via BLoC
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Struktur folder (inti)
+
+Semua source ada di:
+
+- `lib/main.dart`: entry point + provider setup + route utama
+- `lib/Apps/core/`
+  - `models/`: model data
+  - `provider/`: provider (`UserProvider`, `CartProvider`, dll.)
+  - `service/`: service API (mis. `ServiceUser`)
+  - `utils/`: konstanta API, helper, dll.
+  - `widget/`: widget reusable (alert, dialog, dll.)
+- `lib/Apps/features/presentation/`
+  - `pages/`: halaman UI (auth, user, admin)
+  - `controller/`: sistem navbar
+  - `bloc/`: BLoC untuk riwayat transaksi
+
+## Setup & menjalankan aplikasi
+
+### Prasyarat
+
+- Flutter SDK (sesuai `environment sdk: ^3.11.0`)
+- Android Studio / VSCode + emulator atau device
+
+### Jalankan (tanpa git clone)
+
+Jika kamu sudah punya folder project ini di komputer:
+
+```bash
+cd Flutter_Mobile_Modul
+flutter pub get
+flutter run
+```
+
+## Opsi: git clone (struktur folder)
+
+Kalau project ini ada di repository Git, contoh cara clone dan jalankan:
+
+```bash
+git clone <URL_REPO_KAMU> Flutter_Mobile_Modul
+cd Flutter_Mobile_Modul
+flutter pub get
+flutter run
+```
+
+Catatan: pastikan kamu menjalankan perintah di folder root yang berisi `pubspec.yaml`.
+
+## Endpoint API (ringkas)
+
+Konstanta base URL ada di:
+
+- `lib/Apps/core/utils/Api/api_constans_api_backend.dart`
+
+Transaksi user memakai:
+
+- `POST /user/transaksi` (lihat `ServiceUser.buatTransaksi`)
