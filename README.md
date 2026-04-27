@@ -66,6 +66,7 @@ Jika kamu sudah punya folder project ini di komputer:
 cd Flutter_Mobile_Modul
 flutter pub get
 flutter run
+
 ```
 
 ## Opsi: git clone (struktur folder)
