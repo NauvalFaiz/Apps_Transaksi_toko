@@ -58,7 +58,7 @@ Semua source ada di:
 - Flutter SDK (sesuai `environment sdk: ^3.11.0`)
 - Android Studio / VSCode + emulator atau device
 
-### Jalankan (tanpa git clone)
+### Jalankan (tanpa git clone).
 
 Jika kamu sudah punya folder project ini di komputer:
 
@@ -66,6 +66,7 @@ Jika kamu sudah punya folder project ini di komputer:
 cd Flutter_Mobile_Modul
 flutter pub get
 flutter run
+
 ```
 
 ## Opsi: git clone (struktur folder)
@@ -73,7 +74,7 @@ flutter run
 Kalau project ini ada di repository Git, contoh cara clone dan jalankan:
 
 ```bash
-git clone <URL_REPO_KAMU> Flutter_Mobile_Modul
+git clone <https://github.com/NauvalFaiz/Apps_Transaksi_toko> Flutter_Mobile_Modul
 cd Flutter_Mobile_Modul
 flutter pub get
 flutter run
